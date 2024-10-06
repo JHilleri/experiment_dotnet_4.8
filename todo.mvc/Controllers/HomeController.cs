@@ -1,30 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
+using todo.application.Contracts;
+using todo.mvc.ViewModels;
 
-namespace todo.mvc.Controllers
+namespace todo.mvc.Controllers;
+
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    private readonly Dependencies dependencies = new();
+
+    public ActionResult Index()
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
+        var getCollectionsUseCase = this.dependencies.Resolve<IGetCollectionsUseCase>();
+        return View(
+            new TodoListViewModel
+            {
+                Collections = getCollectionsUseCase.GetCollections().ToList(),
+            }
+        );
+    }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+    [HttpPost]
+    public ActionResult CreateCollection(string title)
+    {
+        var createTaskCollectionUseCase =
+            this.dependencies.Resolve<ICreateTaskCollectionUseCase>();
+        createTaskCollectionUseCase.CreateTaskCollection(title);
+        return RedirectToAction("Index");
     }
 }

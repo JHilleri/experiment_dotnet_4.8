@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,7 +43,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DateProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskCollectionRepository.cs" />
+    <Compile Include="TaskRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Polyfill\Polyfill.csproj">
+      <Project>{fc2f1f56-50b5-4e9f-84b1-50f71a879e9c}</Project>
+      <Name>Polyfill</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\todo.application\todo.application.csproj">
+      <Project>{bbc2313e-805d-4872-a9d2-d0aa9a813357}</Project>
+      <Name>todo.application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\todo.domain\todo.domain.csproj">
+      <Project>{e7b21e19-cbc5-4f47-89db-ce9b281c7fb9}</Project>
+      <Name>todo.domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

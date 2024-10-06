@@ -4,12 +4,32 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.12.35323.107
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "todo.mvc", "todo.mvc\todo.mvc.csproj", "{90C3510D-22C7-40BA-91D5-BBDB8964FFDA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3A50F6A8-52BC-4347-8B08-968A994DB833} = {3A50F6A8-52BC-4347-8B08-968A994DB833}
+		{BBC2313E-805D-4872-A9D2-D0AA9A813357} = {BBC2313E-805D-4872-A9D2-D0AA9A813357}
+		{E7B21E19-CBC5-4F47-89DB-CE9B281C7FB9} = {E7B21E19-CBC5-4F47-89DB-CE9B281C7FB9}
+		{FC2F1F56-50B5-4E9F-84B1-50F71A879E9C} = {FC2F1F56-50B5-4E9F-84B1-50F71A879E9C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "todo.application", "todo.application\todo.application.csproj", "{BBC2313E-805D-4872-A9D2-D0AA9A813357}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E7B21E19-CBC5-4F47-89DB-CE9B281C7FB9} = {E7B21E19-CBC5-4F47-89DB-CE9B281C7FB9}
+		{FC2F1F56-50B5-4E9F-84B1-50F71A879E9C} = {FC2F1F56-50B5-4E9F-84B1-50F71A879E9C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "todo.domain", "todo.domain\todo.domain.csproj", "{E7B21E19-CBC5-4F47-89DB-CE9B281C7FB9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FC2F1F56-50B5-4E9F-84B1-50F71A879E9C} = {FC2F1F56-50B5-4E9F-84B1-50F71A879E9C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "todo.infrastructure", "todo.infrastructure\todo.infrastructure.csproj", "{3A50F6A8-52BC-4347-8B08-968A994DB833}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BBC2313E-805D-4872-A9D2-D0AA9A813357} = {BBC2313E-805D-4872-A9D2-D0AA9A813357}
+		{E7B21E19-CBC5-4F47-89DB-CE9B281C7FB9} = {E7B21E19-CBC5-4F47-89DB-CE9B281C7FB9}
+		{FC2F1F56-50B5-4E9F-84B1-50F71A879E9C} = {FC2F1F56-50B5-4E9F-84B1-50F71A879E9C}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polyfill", "Polyfill\Polyfill.csproj", "{FC2F1F56-50B5-4E9F-84B1-50F71A879E9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +53,10 @@ Global
 		{3A50F6A8-52BC-4347-8B08-968A994DB833}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A50F6A8-52BC-4347-8B08-968A994DB833}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A50F6A8-52BC-4347-8B08-968A994DB833}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC2F1F56-50B5-4E9F-84B1-50F71A879E9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC2F1F56-50B5-4E9F-84B1-50F71A879E9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC2F1F56-50B5-4E9F-84B1-50F71A879E9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC2F1F56-50B5-4E9F-84B1-50F71A879E9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

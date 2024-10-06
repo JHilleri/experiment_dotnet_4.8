@@ -4,16 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BBC2313E-805D-4872-A9D2-D0AA9A813357}</ProjectGuid>
+    <ProjectGuid>{FC2F1F56-50B5-4E9F-84B1-50F71A879E9C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>todo.application</RootNamespace>
-    <AssemblyName>todo.application</AssemblyName>
+    <RootNamespace>Polyfill</RootNamespace>
+    <AssemblyName>Polyfill</AssemblyName>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <LangVersion>latest</LangVersion>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,29 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\IDateProvider.cs" />
-    <Compile Include="Abstractions\ITaskCollectionRepository.cs" />
-    <Compile Include="Abstractions\ITaskRepository.cs" />
-    <Compile Include="Contracts\ICreateTaskCollectionUseCase.cs" />
-    <Compile Include="Dto\CollectionItemDto.cs" />
+    <Compile Include="IsExternalInit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UseCases\CreateTaskCollectionUseCase.cs" />
-    <Compile Include="UseCases\CreateTaskUseCase.cs" />
-    <Compile Include="UseCases\GetCollectionsUseCase.cs" />
-    <Compile Include="Contracts\IGetCollectionsUseCase.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Polyfill\Polyfill.csproj">
-      <Project>{fc2f1f56-50b5-4e9f-84b1-50f71a879e9c}</Project>
-      <Name>Polyfill</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\todo.domain\todo.domain.csproj">
-      <Project>{e7b21e19-cbc5-4f47-89db-ce9b281c7fb9}</Project>
-      <Name>todo.domain</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

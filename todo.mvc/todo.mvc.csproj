@@ -23,6 +23,8 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -118,13 +120,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\DependenciesConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Dependencies.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\TodoListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -180,7 +185,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -208,6 +212,24 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.7.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.0.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Polyfill\Polyfill.csproj">
+      <Project>{fc2f1f56-50b5-4e9f-84b1-50f71a879e9c}</Project>
+      <Name>Polyfill</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\todo.application\todo.application.csproj">
+      <Project>{bbc2313e-805d-4872-a9d2-d0aa9a813357}</Project>
+      <Name>todo.application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\todo.domain\todo.domain.csproj">
+      <Project>{e7b21e19-cbc5-4f47-89db-ce9b281c7fb9}</Project>
+      <Name>todo.domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\todo.infrastructure\todo.infrastructure.csproj">
+      <Project>{3a50f6a8-52bc-4347-8b08-968a994db833}</Project>
+      <Name>todo.infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

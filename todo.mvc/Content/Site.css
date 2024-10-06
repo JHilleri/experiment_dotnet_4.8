@@ -18,3 +18,17 @@ select,
 textarea {
     max-width: 280px;
 }
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+}
