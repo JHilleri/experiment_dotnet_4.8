@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using todo.application.Dto;
 
 namespace todo.mvc.ViewModels

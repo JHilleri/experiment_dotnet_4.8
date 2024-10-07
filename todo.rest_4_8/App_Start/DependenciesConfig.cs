@@ -1,16 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+using System.Web.Http.Controllers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using todo.application;
 using todo.infrastructure;
 
-namespace todo.mvc.App_Start;
+namespace todo.rest_4_8;
 
-public class DependenciesConfig
+public static class DependenciesConfig
 {
-    public static void RegisterDependencies()
+    public static IServiceProvider GetResolver()
     {
         var services = new ServiceCollection();
 
@@ -23,13 +24,25 @@ public class DependenciesConfig
                     .Assembly.GetExportedTypes()
                     .Where(t => !t.IsAbstract && !t.IsGenericTypeDefinition)
                     .Where(t =>
-                        typeof(IController).IsAssignableFrom(t)
+                        typeof(IHttpController).IsAssignableFrom(t)
                         || t.Name.EndsWith("Controller", StringComparison.OrdinalIgnoreCase)
                     )
             );
 
         IServiceProvider provider = services.BuildServiceProvider();
-        DependencyResolverWithServiceProvider dependencyResolver = new(provider);
-        DependencyResolver.SetResolver(dependencyResolver);
+        return provider;
+    }
+
+    public static IServiceCollection AddControllersAsServices(
+        this IServiceCollection services,
+        IEnumerable<Type> controllerTypes
+    )
+    {
+        foreach (var type in controllerTypes)
+        {
+            services.AddTransient(type);
+        }
+
+        return services;
     }
 }

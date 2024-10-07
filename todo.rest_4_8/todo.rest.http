@@ -1,0 +1,15 @@
+@todo.rest_HostAddress = http://localhost:58813/api
+
+GET {{todo.rest_HostAddress}}/collection/
+Accept: application/json
+
+###
+
+POST {{todo.rest_HostAddress}}/collection/
+Content-Type: application/json
+
+{
+    "title": "test 2"
+}
+
+###

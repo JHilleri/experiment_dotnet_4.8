@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0-rc.1.24452.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\todo.application\todo.application.csproj" />
+    <ProjectReference Include="..\todo.domain\todo.domain.csproj" />
+    <ProjectReference Include="..\todo.infrastructure\todo.infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

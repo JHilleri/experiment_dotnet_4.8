@@ -1,18 +1,20 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using Microsoft.Extensions.Logging;
 using todo.application.Contracts;
 using todo.mvc.ViewModels;
 
 namespace todo.mvc.Controllers;
 
-public class HomeController : Controller
+public class HomeController(
+    IGetCollectionsUseCase getCollectionsUseCase,
+    ICreateTaskCollectionUseCase createTaskCollectionUseCase,
+    ILogger<HomeController> logger
+) : Controller
 {
-    private readonly Dependencies dependencies = new();
-
     public ActionResult Index()
     {
-        var getCollectionsUseCase = this.dependencies.Resolve<IGetCollectionsUseCase>();
-        return View(
+        return this.View(
             new TodoListViewModel
             {
                 Collections = getCollectionsUseCase.GetCollections().ToList(),
@@ -23,9 +25,8 @@ public class HomeController : Controller
     [HttpPost]
     public ActionResult CreateCollection(string title)
     {
-        var createTaskCollectionUseCase =
-            this.dependencies.Resolve<ICreateTaskCollectionUseCase>();
         createTaskCollectionUseCase.CreateTaskCollection(title);
-        return RedirectToAction("Index");
+        logger.LogInformation($"Created collection with title {title}");
+        return this.RedirectToAction("Index");
     }
 }
