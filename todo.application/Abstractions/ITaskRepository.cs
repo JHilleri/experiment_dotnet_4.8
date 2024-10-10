@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-#nullable enable
-using todo.domain.Entities;
+﻿using todo.domain.Entities;
 
 namespace todo.application.Abstractions;
 

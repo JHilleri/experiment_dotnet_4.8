@@ -2,12 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http.Controllers;
+using System.Web.Http.Dependencies;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using todo.application;
 using todo.infrastructure;
 
 namespace todo.rest_4_8;
+
+public class DependencyResolverWithServiceProvider(IServiceProvider serviceProvider)
+    : IDependencyResolver
+{
+    public IDependencyScope BeginScope()
+    {
+        return new DependencyResolverWithServiceProvider(
+            serviceProvider.CreateScope().ServiceProvider
+        );
+    }
+
+    public void Dispose() { }
+
+    public object GetService(Type serviceType)
+    {
+        return serviceProvider.GetService(serviceType);
+    }
+
+    public IEnumerable<object> GetServices(Type serviceType)
+    {
+        return serviceProvider.GetServices(serviceType);
+    }
+}
 
 public static class DependenciesConfig
 {
@@ -18,7 +42,7 @@ public static class DependenciesConfig
         services
             .AddApplicationDependencies()
             .AddInfrastructureDependencies()
-            .AddLogging(action => action.AddDebug())
+            .AddLogging(action => action.AddCustomLogger().AddDebug())
             .AddControllersAsServices(
                 typeof(DependenciesConfig)
                     .Assembly.GetExportedTypes()

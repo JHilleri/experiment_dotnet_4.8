@@ -1,9 +1,4 @@
-﻿#nullable enable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace todo.domain.Entities;
+﻿namespace todo.domain.Entities;
 
 public record TaskEntity(
     string Id,

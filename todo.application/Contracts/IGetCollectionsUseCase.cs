@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using todo.application.Dto;
+﻿using todo.application.Dto;
 
-namespace todo.application.Contracts
+namespace todo.application.Contracts;
+
+public interface IGetCollectionsUseCase
 {
-    public interface IGetCollectionsUseCase
-    {
-        IEnumerable<CollectionItemDto> GetCollections();
-    }
+    IEnumerable<CollectionItemDto> GetCollections();
 }

@@ -176,7 +176,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CollectionController.cs" />
     <Compile Include="App_Start\DependenciesConfig.cs" />
-    <Compile Include="DependencyResolverWithServiceProvider.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

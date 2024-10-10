@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-namespace todo.application.Contracts;
+﻿namespace todo.application.Contracts;
 
 public interface ICreateTaskCollectionUseCase
 {

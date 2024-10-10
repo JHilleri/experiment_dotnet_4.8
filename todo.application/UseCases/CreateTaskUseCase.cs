@@ -1,7 +1,4 @@
-﻿#nullable enable
-using System;
-using System.Collections.Generic;
-using todo.application.Abstractions;
+﻿using todo.application.Abstractions;
 using todo.domain.Entities;
 
 namespace todo.application.UseCases;

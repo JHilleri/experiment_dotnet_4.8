@@ -8,7 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi().AddApplicationDependencies().AddInfrastructureDependencies();
+builder
+    .Services.AddOpenApi()
+    .AddApplicationDependencies()
+    .AddInfrastructureDependencies()
+    .AddLogging(actions => actions.AddCustomLogger());
 
 var app = builder.Build();
 

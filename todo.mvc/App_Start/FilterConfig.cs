@@ -1,13 +1,12 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace todo.mvc
+namespace todo.mvc;
+
+public class FilterConfig
 {
-    public class FilterConfig
+    public static void RegisterGlobalFilters(GlobalFilterCollection filters)
     {
-        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
-        {
-            filters.Add(new HandleErrorAttribute());
-        }
+        filters.Add(new HandleErrorAttribute());
     }
 }

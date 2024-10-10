@@ -1,7 +1,4 @@
-﻿#nullable enable
-
-using System.Collections.Generic;
-using todo.application.Abstractions;
+﻿using todo.application.Abstractions;
 using todo.domain.Entities;
 
 namespace todo.infrastructure;
@@ -12,9 +9,9 @@ public class TaskRepository : ITaskRepository
 
     public TaskEntity? GetTask(string id)
     {
-        if (TaskEntities.ContainsKey(id))
+        if (this.TaskEntities.ContainsKey(id))
         {
-            return TaskEntities[id];
+            return this.TaskEntities[id];
         }
 
         return null;
@@ -22,18 +19,18 @@ public class TaskRepository : ITaskRepository
 
     public IEnumerable<TaskEntity> GetTasks()
     {
-        return TaskEntities.Values;
+        return this.TaskEntities.Values;
     }
 
     public void SaveTask(TaskEntity task)
     {
-        if (TaskEntities.ContainsKey(task.Id))
+        if (this.TaskEntities.ContainsKey(task.Id))
         {
-            TaskEntities[task.Id] = task;
+            this.TaskEntities[task.Id] = task;
         }
         else
         {
-            TaskEntities.Add(task.Id, task);
+            this.TaskEntities.Add(task.Id, task);
         }
     }
 }

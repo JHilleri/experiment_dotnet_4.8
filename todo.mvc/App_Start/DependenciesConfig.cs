@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Web.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using todo.application;
 using todo.infrastructure;
 
@@ -17,7 +16,7 @@ public class DependenciesConfig
         services
             .AddApplicationDependencies()
             .AddInfrastructureDependencies()
-            .AddLogging(action => action.AddDebug())
+            .AddLogging(action => action.AddCustomLogger())
             .AddControllersAsServices(
                 typeof(DependenciesConfig)
                     .Assembly.GetExportedTypes()

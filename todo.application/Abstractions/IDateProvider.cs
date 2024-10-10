@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace todo.application.Abstractions;
+﻿namespace todo.application.Abstractions;
 
 public interface IDateProvider
 {

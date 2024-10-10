@@ -1,6 +1,4 @@
-﻿#nullable enable
-using System.Collections.Generic;
-using todo.application.Abstractions;
+﻿using todo.application.Abstractions;
 using todo.domain.Aggregate;
 
 namespace todo.infrastructure;
@@ -14,9 +12,9 @@ public class TaskCollectionRepository : ITaskCollectionRepository
 
     public TaskCollectionAggregate? GetTaskCollection(string id)
     {
-        if (TaskCollections.ContainsKey(id))
+        if (this.TaskCollections.ContainsKey(id))
         {
-            return TaskCollections[id];
+            return this.TaskCollections[id];
         }
 
         return null;
@@ -24,11 +22,15 @@ public class TaskCollectionRepository : ITaskCollectionRepository
 
     public IEnumerable<TaskCollectionAggregate> GetTaskCollections()
     {
-        return TaskCollections.Values;
+        return this.TaskCollections.Values;
     }
 
     public void SaveTaskCollection(TaskCollectionAggregate taskCollection)
     {
-        TaskCollections.Add(taskCollection.Id, taskCollection);
+        if (taskCollection is { Title: "error" })
+        {
+            throw new Exception("Error: the title is 'error'.");
+        }
+        this.TaskCollections.Add(taskCollection.Id, taskCollection);
     }
 }

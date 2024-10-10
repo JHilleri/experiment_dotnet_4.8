@@ -1,5 +1,4 @@
-﻿using System;
-using todo.application.Abstractions;
+﻿using todo.application.Abstractions;
 
 namespace todo.infrastructure;
 
