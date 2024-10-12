@@ -7,7 +7,6 @@ public static class WebApiConfig
     public static void Register(HttpConfiguration config)
     {
         // Configuration et services de l'API Web
-        // Configuration et services de l'API Web
 
         // Itinéraires de l'API Web
         config.MapHttpAttributeRoutes();

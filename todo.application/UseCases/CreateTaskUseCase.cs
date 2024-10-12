@@ -1,8 +1,10 @@
 ﻿using todo.application.Abstractions;
+using todo.application.DIHelpers;
 using todo.domain.Entities;
 
 namespace todo.application.UseCases;
 
+[Injectable]
 public class CreateTaskUseCase(
     IDateProvider dateProvider,
     ITaskRepository taskRepository,

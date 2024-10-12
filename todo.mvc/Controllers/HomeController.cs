@@ -14,10 +14,12 @@ public class HomeController(
 {
     public ActionResult Index()
     {
+        var collections = getCollectionsUseCase.GetCollections().ToList();
+        logger.LogInformation($"Loaded collections {string.Join(", ", collections.Select(collection => collection.Title))}");
         return this.View(
             new TodoListViewModel
             {
-                Collections = getCollectionsUseCase.GetCollections().ToList(),
+                Collections = collections,
             }
         );
     }

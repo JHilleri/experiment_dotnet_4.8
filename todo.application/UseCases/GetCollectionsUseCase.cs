@@ -1,9 +1,11 @@
 ﻿using todo.application.Abstractions;
 using todo.application.Contracts;
+using todo.application.DIHelpers;
 using todo.application.Dto;
 
 namespace todo.application.UseCases;
 
+[Injectable]
 public class GetCollectionsUseCase(ITaskCollectionRepository taskCollectionRepository)
     : IGetCollectionsUseCase
 {

@@ -13,3 +13,8 @@ Content-Type: application/json
 }
 
 ###
+
+GET {{todo.rest_HostAddress}}/hello/
+Accept: application/json
+
+###

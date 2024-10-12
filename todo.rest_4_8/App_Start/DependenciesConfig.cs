@@ -29,7 +29,10 @@ public class DependencyResolverWithServiceProvider(IServiceProvider serviceProvi
 
     public IEnumerable<object> GetServices(Type serviceType)
     {
-        return serviceProvider.GetServices(serviceType);
+        return serviceProvider
+            .GetServices(serviceType)
+            .Where((service => service != null))
+            .Select(service => service!);
     }
 }
 

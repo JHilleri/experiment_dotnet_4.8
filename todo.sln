@@ -37,6 +37,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "todo.rest_4_8", "todo.rest_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "library_9", "library_9\library_9.csproj", "{A33CD017-AD8D-4B3B-8AA2-D3804178223D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "todo.presentation.api", "todo.presentation.api\todo.presentation.api.csproj", "{36375589-87E0-4881-BD36-8A71375A26EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Éléments de solution", "Éléments de solution", "{C836C7C2-F104-4000-860A-E3A53FB2A14F}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Packages.props = Directory.Packages.props
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +82,10 @@ Global
 		{A33CD017-AD8D-4B3B-8AA2-D3804178223D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A33CD017-AD8D-4B3B-8AA2-D3804178223D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A33CD017-AD8D-4B3B-8AA2-D3804178223D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36375589-87E0-4881-BD36-8A71375A26EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36375589-87E0-4881-BD36-8A71375A26EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36375589-87E0-4881-BD36-8A71375A26EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36375589-87E0-4881-BD36-8A71375A26EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

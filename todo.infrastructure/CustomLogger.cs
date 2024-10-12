@@ -43,7 +43,7 @@ public class CustomLogger(string name, IDateProvider dateProvider) : ILogger
         {
             message += Environment.NewLine + exception;
         }
-        string completeMessage = $"{now:u} {logLevel}: [{name}] {message}";
+        string completeMessage = $"{now:u} {logLevel} [{name}] {message}";
 
         if (Debugger.IsAttached)
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,7 +16,7 @@ public class DependencyResolverWithServiceProvider(IServiceProvider serviceProvi
 
     public IEnumerable<object> GetServices(Type serviceType)
     {
-        return serviceProvider.GetServices(serviceType);
+        return (IEnumerable<object>)serviceProvider.GetServices(serviceType).Where(service => service != null);
     }
 }
 

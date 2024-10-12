@@ -1,19 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net481</TargetFramework>
+	<TargetFrameworks>net481;net9.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\todo.application\todo.application.csproj" />
     <ProjectReference Include="..\todo.domain\todo.domain.csproj" />
   </ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net481'">
+		<ProjectReference Include="..\Polyfill\Polyfill.csproj" />
+	</ItemGroup>
 
 </Project>

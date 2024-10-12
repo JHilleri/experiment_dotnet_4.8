@@ -1,11 +1,13 @@
 ﻿using Microsoft.Extensions.Logging;
 using todo.application.Abstractions;
 using todo.application.Contracts;
+using todo.application.DIHelpers;
 using todo.domain.Aggregate;
 using todo.domain.Entities;
 
 namespace todo.application.UseCases;
 
+[Injectable]
 public class CreateTaskCollectionUseCase(
     ITaskCollectionRepository taskCollectionRepository,
     ILogger<CreateTaskCollectionUseCase> logger

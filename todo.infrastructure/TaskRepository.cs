@@ -1,20 +1,17 @@
 ﻿using todo.application.Abstractions;
+using todo.application.DIHelpers;
 using todo.domain.Entities;
 
 namespace todo.infrastructure;
 
+[Injectable(Lifetime.Singleton)]
 public class TaskRepository : ITaskRepository
 {
     private readonly Dictionary<string, TaskEntity> TaskEntities = [];
 
     public TaskEntity? GetTask(string id)
     {
-        if (this.TaskEntities.ContainsKey(id))
-        {
-            return this.TaskEntities[id];
-        }
-
-        return null;
+        return this.TaskEntities.TryGetValue(id, out var task) ? task : null;
     }
 
     public IEnumerable<TaskEntity> GetTasks()
@@ -24,13 +21,6 @@ public class TaskRepository : ITaskRepository
 
     public void SaveTask(TaskEntity task)
     {
-        if (this.TaskEntities.ContainsKey(task.Id))
-        {
-            this.TaskEntities[task.Id] = task;
-        }
-        else
-        {
-            this.TaskEntities.Add(task.Id, task);
-        }
+        this.TaskEntities[task.Id] = task;
     }
 }

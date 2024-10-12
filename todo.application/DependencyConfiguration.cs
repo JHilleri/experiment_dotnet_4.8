@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using todo.application.Contracts;
-using todo.application.UseCases;
+using todo.application.DIHelpers;
 
 namespace todo.application;
 
@@ -8,8 +7,7 @@ public static class DependencyConfiguration
 {
     public static IServiceCollection AddApplicationDependencies(this IServiceCollection services)
     {
-        services.AddSingleton<IGetCollectionsUseCase, GetCollectionsUseCase>();
-        services.AddSingleton<ICreateTaskCollectionUseCase, CreateTaskCollectionUseCase>();
+        services.AddInjectableServices(typeof(DependencyConfiguration).Assembly);
 
         return services;
     }

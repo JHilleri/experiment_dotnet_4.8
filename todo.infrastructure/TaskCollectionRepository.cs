@@ -1,14 +1,13 @@
 ﻿using todo.application.Abstractions;
+using todo.application.DIHelpers;
 using todo.domain.Aggregate;
 
 namespace todo.infrastructure;
 
+[Injectable(Lifetime.Singleton)]
 public class TaskCollectionRepository : ITaskCollectionRepository
 {
-    private readonly Dictionary<string, TaskCollectionAggregate> TaskCollections = new()
-    {
-        { "1" , new TaskCollectionAggregate("1", "test", null, []) }
-    };
+    private readonly Dictionary<string, TaskCollectionAggregate> TaskCollections = [];
 
     public TaskCollectionAggregate? GetTaskCollection(string id)
     {

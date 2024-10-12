@@ -1,13 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net481;net9.0</TargetFrameworks>
+		<TargetFramework>net481</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net481'">
+	<ItemGroup>
 		<ProjectReference Include="..\Polyfill\Polyfill.csproj" />
+		<PackageReference Include="Microsoft.AspNet.WebApi.Core" />
 	</ItemGroup>
 
 </Project>
