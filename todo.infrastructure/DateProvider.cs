@@ -1,5 +1,5 @@
 ﻿using todo.application.Abstractions;
-using todo.application.DIHelpers;
+using todo.application.core;
 
 namespace todo.infrastructure;
 

@@ -1,29 +1,30 @@
 ﻿using Microsoft.Extensions.Logging;
 using todo.application.Abstractions;
-using todo.application.Contracts;
-using todo.application.DIHelpers;
+using todo.application.core;
 using todo.domain.Aggregate;
 using todo.domain.Entities;
 
 namespace todo.application.UseCases;
 
+public record CreateTaskCollectionParam(string Title) : IUseCaseParam { }
+
 [Injectable]
 public class CreateTaskCollectionUseCase(
     ITaskCollectionRepository taskCollectionRepository,
     ILogger<CreateTaskCollectionUseCase> logger
-) : ICreateTaskCollectionUseCase
+) : IUseCase<CreateTaskCollectionParam>
 {
-    public void CreateTaskCollection(string title)
+    public async Task Execute(CreateTaskCollectionParam request)
     {
         try
         {
             var taskCollection = new TaskCollectionAggregate(
                 Id: Guid.NewGuid().ToString(),
-                Title: title,
+                Title: request.Title,
                 Tasks: new List<TaskEntity>().AsReadOnly(),
                 Message: null
             );
-            taskCollectionRepository.SaveTaskCollection(taskCollection);
+            await taskCollectionRepository.SaveTaskCollection(taskCollection);
         }
         catch (Exception ex)
         {

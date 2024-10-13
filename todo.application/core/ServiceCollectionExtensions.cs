@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace todo.application.DIHelpers;
+namespace todo.application.core;
 
 public static class ServiceCollectionExtensions
 {
@@ -12,20 +12,32 @@ public static class ServiceCollectionExtensions
     {
         var injectablesTypes = assembly
             .GetTypes()
-            .Where(t => t.GetCustomAttributes(typeof(InjectableAttribute), true).Length > 0);
+            .Where(t =>
+                !t.IsGenericType
+                && !t.IsAbstract
+                && t.GetCustomAttributes(typeof(InjectableAttribute), false).Length > 0
+            );
 
         foreach (var type in injectablesTypes)
         {
             var injectableAttribute = type.GetCustomAttribute<InjectableAttribute>();
-            if (injectableAttribute == null)
+            dynamic[] explicitTypes = (
+                type.GetCustomAttributes(typeof(InjectableOfAttribute<>)) as dynamic[]
+            )!;
+            if (injectableAttribute is null)
             {
                 continue;
             }
-            var interfaces = type.GetInterfaces().Where((i => i != typeof(IDisposable)));
+            var lifetime = injectableAttribute.Lifetime;
+
+            var interfaces =
+                explicitTypes?.Length > 0
+                    ? explicitTypes.Select(t => t.Type as Type).ToArray()
+                    : type.GetInterfaces().Where(i => i != typeof(IDisposable));
 
             foreach (var interfacesType in interfaces)
             {
-                switch (injectableAttribute.Lifetime)
+                switch (lifetime)
                 {
                     case Lifetime.Singleton:
                         services.AddSingleton(interfacesType, type);

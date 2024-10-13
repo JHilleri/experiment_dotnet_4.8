@@ -1,5 +1,5 @@
 ﻿using todo.application.Abstractions;
-using todo.application.DIHelpers;
+using todo.application.core;
 using todo.domain.Entities;
 
 namespace todo.infrastructure;
@@ -9,18 +9,21 @@ public class TaskRepository : ITaskRepository
 {
     private readonly Dictionary<string, TaskEntity> TaskEntities = [];
 
-    public TaskEntity? GetTask(string id)
+    public async Task<TaskEntity?> GetTask(string id)
     {
+        await Task.Delay(2);
         return this.TaskEntities.TryGetValue(id, out var task) ? task : null;
     }
 
-    public IEnumerable<TaskEntity> GetTasks()
+    public async Task<IEnumerable<TaskEntity>> GetTasks()
     {
+        await Task.Delay(2);
         return this.TaskEntities.Values;
     }
 
-    public void SaveTask(TaskEntity task)
+    public async Task SaveTask(TaskEntity task)
     {
+        await Task.Delay(2);
         this.TaskEntities[task.Id] = task;
     }
 }

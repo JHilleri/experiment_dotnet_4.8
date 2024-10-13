@@ -1,5 +1,5 @@
 ﻿using todo.application.Abstractions;
-using todo.application.DIHelpers;
+using todo.application.core;
 using todo.domain.Aggregate;
 
 namespace todo.infrastructure;
@@ -9,23 +9,26 @@ public class TaskCollectionRepository : ITaskCollectionRepository
 {
     private readonly Dictionary<string, TaskCollectionAggregate> TaskCollections = [];
 
-    public TaskCollectionAggregate? GetTaskCollection(string id)
+    public async Task<TaskCollectionAggregate?> GetTaskCollection(string id)
     {
         if (this.TaskCollections.ContainsKey(id))
         {
+            await Task.Delay(2);
             return this.TaskCollections[id];
         }
 
         return null;
     }
 
-    public IEnumerable<TaskCollectionAggregate> GetTaskCollections()
+    public async Task<IEnumerable<TaskCollectionAggregate>> GetTaskCollections()
     {
+        await Task.Delay(2);
         return this.TaskCollections.Values;
     }
 
-    public void SaveTaskCollection(TaskCollectionAggregate taskCollection)
+    public async Task SaveTaskCollection(TaskCollectionAggregate taskCollection)
     {
+        await Task.Delay(2);
         if (taskCollection is { Title: "error" })
         {
             throw new Exception("Error: the title is 'error'.");

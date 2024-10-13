@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using todo.application.DIHelpers;
+using todo.application.core;
 
 namespace todo.infrastructure;
 

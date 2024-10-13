@@ -4,7 +4,7 @@ namespace todo.application.Abstractions;
 
 public interface ITaskRepository
 {
-    TaskEntity? GetTask(string id);
-    IEnumerable<TaskEntity> GetTasks();
-    void SaveTask(TaskEntity task);
+    Task<TaskEntity?> GetTask(string id);
+    Task<IEnumerable<TaskEntity>> GetTasks();
+    Task SaveTask(TaskEntity task);
 }

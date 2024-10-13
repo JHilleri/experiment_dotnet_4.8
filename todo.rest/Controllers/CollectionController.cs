@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using todo.application.Contracts;
-using todo.application.Dto;
+using todo.application.core;
+using todo.application.UseCases;
 
 namespace todo.rest.Controllers;
 
@@ -9,21 +9,22 @@ public record CollectionCreationDto(string Title);
 [ApiController]
 [Route("/collection")]
 public class CollectionsController(
-    IGetCollectionsUseCase getCollections,
-    ICreateTaskCollectionUseCase createTaskCollection,
+    IUseCaseService useCaseService,
     ILogger<CollectionsController> logger
 ) : ControllerBase
 {
     [HttpGet(Name = "GetCollections")]
-    public IEnumerable<CollectionItemDto> Get()
+    public async Task<IEnumerable<CollectionItemDto>> Get()
     {
-        return getCollections.GetCollections();
+        return await useCaseService.Execute(new GetCollectionsParam());
     }
 
     [HttpPost(Name = "CreateCollection")]
-    public IActionResult CreateCollection([FromBody] CollectionCreationDto createCollectionDto)
+    public async Task<IActionResult> CreateCollection(
+        [FromBody] CollectionCreationDto createCollectionDto
+    )
     {
-        createTaskCollection.CreateTaskCollection(createCollectionDto.Title);
+        await useCaseService.Execute(new CreateTaskCollectionParam(createCollectionDto.Title));
         logger.LogInformation($"Created collection with title {createCollectionDto.Title}");
         return this.RedirectToAction("Get");
     }

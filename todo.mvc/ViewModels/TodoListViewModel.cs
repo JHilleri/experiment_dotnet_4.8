@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using todo.application.Dto;
+using todo.application.UseCases;
 
 namespace todo.mvc.ViewModels
 {

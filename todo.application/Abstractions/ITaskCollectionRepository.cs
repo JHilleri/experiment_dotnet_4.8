@@ -4,7 +4,7 @@ namespace todo.application.Abstractions;
 
 public interface ITaskCollectionRepository
 {
-    TaskCollectionAggregate? GetTaskCollection(string id);
-    IEnumerable<TaskCollectionAggregate> GetTaskCollections();
-    void SaveTaskCollection(TaskCollectionAggregate taskCollection);
+    Task<TaskCollectionAggregate?> GetTaskCollection(string id);
+    Task<IEnumerable<TaskCollectionAggregate>> GetTaskCollections();
+    Task SaveTaskCollection(TaskCollectionAggregate taskCollection);
 }

@@ -1,34 +1,32 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.Extensions.Logging;
-using todo.application.Contracts;
+using todo.application.core;
+using todo.application.UseCases;
 
 namespace todo.rest_4_8.Controllers;
 
 public record CollectionCreationDto(string Title);
-public record CollectionDto(string Id, string Title);
 
 [RoutePrefix("api/controller")]
 public class CollectionController(
-    IGetCollectionsUseCase getCollections,
-    ICreateTaskCollectionUseCase createTaskCollection,
+    IUseCaseService useCaseService,
     ILogger<CollectionController> logger
 ) : ApiController
 {
     [HttpGet]
-    public List<CollectionDto> Get()
+    public async Task<IEnumerable<CollectionItemDto>> Get()
     {
-        return getCollections
-            .GetCollections()
-            .Select(item => new CollectionDto(Id: item.Id, Title: item.Title))
-            .ToList();
+        return await useCaseService.Execute(new GetCollectionsParam());
     }
 
     [HttpPost]
-    public IHttpActionResult Post([FromBody] CollectionCreationDto createCollectionDto)
+    public async Task<IHttpActionResult> CreateCollection(
+        [FromBody] CollectionCreationDto createCollectionDto
+    )
     {
-        createTaskCollection.CreateTaskCollection(createCollectionDto.Title);
+        await useCaseService.Execute(new CreateTaskCollectionParam(createCollectionDto.Title));
         logger.LogInformation($"Created collection with title {createCollectionDto.Title}");
         return this.Ok();
     }
