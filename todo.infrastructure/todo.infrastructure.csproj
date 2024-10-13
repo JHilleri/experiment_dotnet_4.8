@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<TargetFrameworks>net481;net9.0</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -9,10 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\todo.application\todo.application.csproj" />
     <ProjectReference Include="..\todo.domain\todo.domain.csproj" />
+    <ProjectReference Include="..\Polyfill\Polyfill.csproj" />
   </ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net481'">
-		<ProjectReference Include="..\Polyfill\Polyfill.csproj" />
-	</ItemGroup>
 
 </Project>
