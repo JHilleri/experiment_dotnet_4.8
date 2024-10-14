@@ -1,4 +1,4 @@
-﻿namespace todo.domain.Entities;
+﻿namespace todo.domain.Todo;
 
 public record TaskEntity(
     string Id,
@@ -22,7 +22,7 @@ public record TaskEntity(
     {
         return this with
         {
-            SubTasks = Enumerable.Concat(this.SubTasks, subTasks).ToList().AsReadOnly(),
+            SubTasks = this.SubTasks.Concat(subTasks).ToList().AsReadOnly(),
         };
     }
 }

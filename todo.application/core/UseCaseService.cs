@@ -4,14 +4,14 @@ namespace todo.application.core;
 
 public class UseCaseService(IServiceProvider serviceProvider) : IUseCaseService
 {
-    public Task<Result> Execute<Result>(IUseCaseParam<Result> request)
+    public Task<Result> Execute<Result>(IUseCase<Result> request)
     {
-        var useCaseType = typeof(IUseCase<,>).MakeGenericType(request.GetType(), typeof(Result));
+        var useCaseImplementation = typeof(IUseCaseImplementation<,>).MakeGenericType(request.GetType(), typeof(Result));
 
         var resolved =
-            serviceProvider.GetRequiredService(useCaseType)
+            serviceProvider.GetRequiredService(useCaseImplementation)
             ?? throw new InvalidOperationException(
-                $"Use case not found for request {request.GetType()}, useCaseType: {useCaseType.GetType()}"
+                $"Implementation not found for use case {request.GetType()}, useCaseImplementation: {useCaseImplementation.GetType()}"
             );
 
         //if (resolved is IUseCase<IUseCaseParam<Result>, Result> useCase)
@@ -31,12 +31,12 @@ public class UseCaseService(IServiceProvider serviceProvider) : IUseCaseService
     }
 
     public Task Execute<Params>(Params request)
-        where Params : IUseCaseParam
+        where Params : IUseCase
     {
         return
-            serviceProvider.GetRequiredService<IUseCase<Params>>() is not IUseCase<Params> useCase
+            serviceProvider.GetRequiredService<IUseCaseImplementation<Params>>() is not IUseCaseImplementation<Params> useCase
             ? throw new InvalidOperationException(
-                $"Use case not found for request {request.GetType()}"
+                $"Implementation not found for use case {request.GetType()}"
             )
             : useCase.Execute(request);
     }

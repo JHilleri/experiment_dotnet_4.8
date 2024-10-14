@@ -1,22 +1,23 @@
-﻿using todo.application.Abstractions;
+﻿using todo.application.Collection;
+using todo.application.Common;
 using todo.application.core;
-using todo.domain.Entities;
+using todo.domain.Todo;
 
-namespace todo.application.UseCases;
+namespace todo.application.Todo;
 
 public record CreateTaskParams(
     string Title,
     string? Message,
     DateTime? Deadline,
     string CollectionId
-) : IUseCaseParam<string>;
+) : IUseCase<string>;
 
 [Injectable]
 public class CreateTaskUseCase(
     IDateProvider dateProvider,
     ITaskRepository taskRepository,
     ITaskCollectionRepository taskCollectionRepository
-) : IUseCase<CreateTaskParams, string>
+) : IUseCaseImplementation<CreateTaskParams, string>
 {
     public async Task<string> Execute(CreateTaskParams request)
     {

@@ -1,6 +1,6 @@
-﻿using todo.domain.Entities;
+﻿using todo.domain.Todo;
 
-namespace todo.domain.Aggregate;
+namespace todo.domain.Collection;
 
 public record TaskCollectionAggregate(
     string Id,
@@ -17,7 +17,7 @@ public record TaskCollectionAggregate(
 
     public TaskCollectionAggregate AddTasks(IEnumerable<TaskEntity> tasks)
     {
-        var newTasks = Enumerable.Concat(this.Tasks, tasks).ToList().AsReadOnly();
+        var newTasks = this.Tasks.Concat(tasks).ToList().AsReadOnly();
         return this with { Tasks = newTasks };
     }
 }

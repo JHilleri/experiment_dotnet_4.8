@@ -3,6 +3,6 @@
 public interface IUseCaseService
 {
     Task Execute<Params>(Params request)
-        where Params : IUseCaseParam;
-    Task<Result> Execute<Result>(IUseCaseParam<Result> request);
+        where Params : IUseCase;
+    Task<Result> Execute<Result>(IUseCase<Result> request);
 }

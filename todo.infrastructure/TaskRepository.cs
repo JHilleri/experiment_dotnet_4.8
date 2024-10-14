@@ -1,6 +1,6 @@
-﻿using todo.application.Abstractions;
-using todo.application.core;
-using todo.domain.Entities;
+﻿using todo.application.core;
+using todo.application.Todo;
+using todo.domain.Todo;
 
 namespace todo.infrastructure;
 

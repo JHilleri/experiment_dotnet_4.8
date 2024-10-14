@@ -1,6 +1,6 @@
-﻿using todo.application.Abstractions;
+﻿using todo.application.Collection;
 using todo.application.core;
-using todo.domain.Aggregate;
+using todo.domain.Collection;
 
 namespace todo.infrastructure;
 

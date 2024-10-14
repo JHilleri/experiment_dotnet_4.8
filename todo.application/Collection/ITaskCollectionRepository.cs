@@ -1,6 +1,6 @@
-﻿using todo.domain.Aggregate;
+﻿using todo.domain.Collection;
 
-namespace todo.application.Abstractions;
+namespace todo.application.Collection;
 
 public interface ITaskCollectionRepository
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using todo.application.Collection;
 using todo.application.core;
-using todo.application.UseCases;
 
 namespace todo.rest.Controllers;
 

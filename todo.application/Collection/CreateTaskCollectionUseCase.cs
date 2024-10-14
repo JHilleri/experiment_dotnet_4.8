@@ -1,18 +1,17 @@
 ﻿using Microsoft.Extensions.Logging;
-using todo.application.Abstractions;
 using todo.application.core;
-using todo.domain.Aggregate;
-using todo.domain.Entities;
+using todo.domain.Collection;
+using todo.domain.Todo;
 
-namespace todo.application.UseCases;
+namespace todo.application.Collection;
 
-public record CreateTaskCollectionParam(string Title) : IUseCaseParam { }
+public record CreateTaskCollectionParam(string Title) : IUseCase;
 
 [Injectable]
 public class CreateTaskCollectionUseCase(
     ITaskCollectionRepository taskCollectionRepository,
     ILogger<CreateTaskCollectionUseCase> logger
-) : IUseCase<CreateTaskCollectionParam>
+) : IUseCaseImplementation<CreateTaskCollectionParam>
 {
     public async Task Execute(CreateTaskCollectionParam request)
     {

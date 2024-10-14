@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
-using todo.application.Abstractions;
+using todo.application.Common;
 
 namespace todo.infrastructure;
 

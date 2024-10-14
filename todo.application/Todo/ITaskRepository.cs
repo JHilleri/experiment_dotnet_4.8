@@ -1,6 +1,6 @@
-﻿using todo.domain.Entities;
+﻿using todo.domain.Todo;
 
-namespace todo.application.Abstractions;
+namespace todo.application.Todo;
 
 public interface ITaskRepository
 {
