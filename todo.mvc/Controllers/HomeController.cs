@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Microsoft.Extensions.Logging;
 using todo.application.Collection;
 using todo.application.core;
+using todo.domain.core;
 using todo.mvc.ViewModels;
 
 namespace todo.mvc.Controllers;
@@ -21,10 +22,13 @@ public class HomeController(IUseCaseService useCase, ILogger<HomeController> log
     }
 
     [HttpPost]
-    public ActionResult CreateCollection(string title)
+    public async Task<ActionResult> CreateCollection(string title)
     {
-        useCase.Execute(new CreateTaskCollectionParam(title));
-        logger.LogInformation($"Created collection with title {title}");
+        Result<string> result = await useCase.Execute(new CreateCollection(title));
+        result.Tap(
+            _ => logger.LogInformation("Created collection with title {title}", title),
+            error => logger.LogError("failed to create: {error}", error.Message)
+        );
         return this.RedirectToAction("Index");
     }
 }

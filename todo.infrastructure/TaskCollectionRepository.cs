@@ -26,7 +26,7 @@ public class TaskCollectionRepository : ITaskCollectionRepository
         return this.TaskCollections.Values;
     }
 
-    public async Task SaveTaskCollection(TaskCollectionAggregate taskCollection)
+    public async Task<string> SaveTaskCollection(TaskCollectionAggregate taskCollection)
     {
         await Task.Delay(2);
         if (taskCollection is { Title: "error" })
@@ -34,5 +34,6 @@ public class TaskCollectionRepository : ITaskCollectionRepository
             throw new Exception("Error: the title is 'error'.");
         }
         this.TaskCollections.Add(taskCollection.Id, taskCollection);
+        return taskCollection.Id;
     }
 }

@@ -37,9 +37,14 @@ public class CreateTaskUseCase(
             ?? throw new Exception("Task collection not found");
 
         var updatedTaskCollection = taskCollection.AddTask(task);
+        if (!updatedTaskCollection.IsSuccess)
+        {
+            throw new Exception(updatedTaskCollection.GetError().Message);
+        }
 
         await taskRepository.SaveTask(task);
-        await taskCollectionRepository.SaveTaskCollection(updatedTaskCollection);
+        
+        await taskCollectionRepository.SaveTaskCollection(updatedTaskCollection.GetValue());
 
         return createdId;
     }

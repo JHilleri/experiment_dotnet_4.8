@@ -6,5 +6,5 @@ public interface ITaskCollectionRepository
 {
     Task<TaskCollectionAggregate?> GetTaskCollection(string id);
     Task<IEnumerable<TaskCollectionAggregate>> GetTaskCollections();
-    Task SaveTaskCollection(TaskCollectionAggregate taskCollection);
+    Task<string> SaveTaskCollection(TaskCollectionAggregate taskCollection);
 }

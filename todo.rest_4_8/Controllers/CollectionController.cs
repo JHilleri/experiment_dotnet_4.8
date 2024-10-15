@@ -4,6 +4,7 @@ using System.Web.Http;
 using Microsoft.Extensions.Logging;
 using todo.application.Collection;
 using todo.application.core;
+using todo.domain.core;
 
 namespace todo.rest_4_8.Controllers;
 
@@ -26,8 +27,16 @@ public class CollectionController(
         [FromBody] CollectionCreationDto createCollectionDto
     )
     {
-        await useCaseService.Execute(new CreateTaskCollectionParam(createCollectionDto.Title));
-        logger.LogInformation($"Created collection with title {createCollectionDto.Title}");
+        await useCaseService
+            .Execute(new CreateCollection(createCollectionDto.Title))
+            .Tap(
+                _ =>
+                    logger.LogInformation(
+                        "Created collection with title {title}",
+                        createCollectionDto.Title
+                    ),
+                error => logger.LogError("failed to create: {error}", error.Message)
+            );
         return this.Ok();
     }
 }
