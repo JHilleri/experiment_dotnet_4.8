@@ -1,6 +1,12 @@
 @model todo.mvc.ViewModels.TodoListViewModel
 
+@{
+    ViewBag.Title = "Liste des collections";
+}
+
 <main>
+    <h1>Liste des collections</h1>
+
     <section aria-labelledby="collection-title">
         <h2 id="collection-title">Collections</h2>
         @if (Model.Collections.Count() > 0)
@@ -8,7 +14,16 @@
             <ul>
                 @foreach (var todo in Model.Collections)
                 {
-                    <li>@todo.Title</li>
+                    <li>
+                        <article>
+                            <header>
+                                <h3 id="todo-item-@todo.Id">@todo.Title</h3>
+                            </header>
+                           @Html.ActionLink("open", "GetCollection", new { id = todo.Id })
+                               
+                        </article>
+                        @todo.Title
+                    </li>
                 }
             </ul>
         }

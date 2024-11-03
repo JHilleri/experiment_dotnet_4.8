@@ -178,6 +178,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceProviderExtensions.cs" />
+    <Compile Include="ViewModels\TodoCollectionDetailViewModel.cs" />
     <Compile Include="ViewModels\TodoListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -230,6 +231,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\TodoCollection\Index.cshtml" />
+    <Content Include="Views\TodoCollection\CollectionDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

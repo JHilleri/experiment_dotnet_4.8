@@ -9,8 +9,12 @@ namespace todo.application.TodoItem;
 
 public static class CreateTodoItem
 {
-    public record Command(string Title, string? Message, DateTime? Deadline, string CollectionId)
-        : IRequest<Result<string>>;
+    public record Command(
+        string Title,
+        string CollectionId,
+        string? Message = null,
+        DateTime? Deadline = null
+    ) : IRequest<Result<string>>;
 
     public class Handler(
         IDateProvider dateProvider,

@@ -1,0 +1,44 @@
+﻿@model  todo.mvc.ViewModels.TodoCollectionDetailViewModel
+
+@Html.ActionLink("back", "")
+
+<main>
+    @if (string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        ViewBag.Title = Model.Title;
+
+        <h1>@Model.Title</h1>
+
+        <ul>
+            @foreach (var item in Model.Items)
+            {
+                <li>
+                    <article>
+                        <header>
+                            <h2>@item.Title</h2>
+                        </header>
+                    </article>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>@Model.ErrorMessage</p>
+    }
+
+    <section aria-labelledby="item-creation-title">
+        <h2 id="item-creation-title">Item creation</h2>
+        @using (Html.BeginForm("AddTask", "TodoCollection", new {id = Model.Id}, FormMethod.Post))
+        {
+            <div>
+                @Html.LabelFor(m => m.ItemCreation.Title)
+                @Html.EditorFor(m => m.ItemCreation.Title)
+                @Html.ValidationMessageFor(m => m.ItemCreation.Title)
+            </div>
+
+            <button type="submit">Create</button>
+        }
+    </section>
+</main>
+
