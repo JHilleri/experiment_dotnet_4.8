@@ -43,7 +43,9 @@ public static class DependenciesConfig
         var services = new ServiceCollection();
 
         services
-            .AddApplicationDependencies()
+            .AddMediatR(configuration =>
+                configuration.RegisterServicesFromAssembly(ApplicationAssembly.Assembly)
+            )
             .AddInfrastructureDependencies()
             .AddLogging(action => action.AddCustomLogger().AddDebug())
             .AddControllersAsServices(

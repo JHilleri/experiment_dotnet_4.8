@@ -16,7 +16,6 @@ public class DependencyResolverWithServiceProvider(IServiceProvider serviceProvi
 
     public IEnumerable<object> GetServices(Type serviceType)
     {
-        return (IEnumerable<object>)serviceProvider.GetServices(serviceType).Where(service => service != null);
+        return serviceProvider.GetServices(serviceType).Where(service => service != null);
     }
 }
-

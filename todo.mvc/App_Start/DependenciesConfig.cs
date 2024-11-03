@@ -7,14 +7,16 @@ using todo.infrastructure;
 
 namespace todo.mvc.App_Start;
 
-public class DependenciesConfig
+public static class DependenciesConfig
 {
     public static void RegisterDependencies()
     {
         var services = new ServiceCollection();
 
         services
-            .AddApplicationDependencies()
+            .AddMediatR(configuration =>
+                configuration.RegisterServicesFromAssembly(ApplicationAssembly.Assembly)
+            )
             .AddInfrastructureDependencies()
             .AddLogging(action => action.AddCustomLogger())
             .AddControllersAsServices(

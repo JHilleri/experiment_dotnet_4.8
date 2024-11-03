@@ -1,24 +1,24 @@
 ﻿using todo.domain.core;
-using todo.domain.Todo;
+using todo.domain.TodoItem;
 
-namespace todo.domain.Collection;
+namespace todo.domain.TodoCollection;
 
-public class TaskCollectionAggregate
+public class TodoCollectionAggregate
 {
     public string Id { get; init; }
     public string Title { get; init; }
     public string? Message { get; init; }
-    private List<TaskEntity> _Tasks { get; init; }
-    public IReadOnlyCollection<TaskEntity> Tasks
+    private List<TodoItemEntity> _Tasks { get; init; }
+    public IReadOnlyCollection<TodoItemEntity> Tasks
     {
         get => this._Tasks.AsReadOnly();
     }
 
-    private TaskCollectionAggregate(
+    private TodoCollectionAggregate(
         string id,
         string title,
         string? message,
-        IReadOnlyCollection<TaskEntity> tasks
+        IReadOnlyCollection<TodoItemEntity> tasks
     )
     {
         this.Id = id;
@@ -27,11 +27,11 @@ public class TaskCollectionAggregate
         this._Tasks = tasks.ToList();
     }
 
-    public static Result<TaskCollectionAggregate> Create(
+    public static Result<TodoCollectionAggregate> Create(
         string id,
         string title,
         string? message = null,
-        IReadOnlyCollection<TaskEntity>? tasks = null
+        IReadOnlyCollection<TodoItemEntity>? tasks = null
     )
     {
         if (string.IsNullOrWhiteSpace(id))
@@ -44,7 +44,7 @@ public class TaskCollectionAggregate
             return new Error("Title is required");
         }
 
-        return new TaskCollectionAggregate(
+        return new TodoCollectionAggregate(
             id: id,
             title: title,
             message: message,
@@ -52,7 +52,7 @@ public class TaskCollectionAggregate
         );
     }
 
-    public Result<TaskCollectionAggregate> AddTask(TaskEntity task)
+    public Result<TodoCollectionAggregate> AddTask(TodoItemEntity task)
     {
         if (this._Tasks.Any(t => t.Id == task.Id))
         {
@@ -64,7 +64,7 @@ public class TaskCollectionAggregate
         return this;
     }
 
-    public Result<TaskCollectionAggregate> AddTasks(IEnumerable<TaskEntity> tasks)
+    public Result<TodoCollectionAggregate> AddTasks(IEnumerable<TodoItemEntity> tasks)
     {
         foreach (var task in tasks)
         {
@@ -80,9 +80,7 @@ public class TaskCollectionAggregate
             return new Error("Duplicate tasks in the collection");
         }
 
-
         this._Tasks.AddRange(tasks);
         return this;
-
     }
 }

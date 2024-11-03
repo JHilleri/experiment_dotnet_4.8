@@ -1,10 +1,15 @@
 ﻿using System.Collections.Generic;
-using todo.application.Collection;
+using todo.application.TodoCollection;
 
-namespace todo.mvc.ViewModels
+namespace todo.mvc.ViewModels;
+
+public class TodoListViewModel
 {
-    public class TodoListViewModel
-    {
-        public List<CollectionItemDto> Collections { get; set; } = [];
-    }
+    public IEnumerable<GetTodoCollections.ResponseItem> Collections { get; set; } = [];
+    public CollectionCreation CollectionCreation { get; set; } = new();
+}
+
+public class CollectionCreation
+{
+    public string Title { get; set; } = "";
 }
